@@ -55,7 +55,7 @@ Download Infusion checkpoint and put it in the 'checkpoints' folder:
 
 ## Data Preparation
 Our experiments are conducted on the datasets provided by [Mip-NeRF](https://jonbarron.info/mipnerf360/), [Instruct-NeRF2NeRF](https://drive.google.com/drive/folders/1v4MLNoSwxvSlWb26xvjxeoHpgjhi_s-s?usp=share_link), and [SPIn-NeRF](https://drive.google.com/drive/folders/1N7D4-6IutYD40v9lfXGSVbWrd47UdJEC?usp=share_link). 
-
+We have uploaded the masks used in the experiment and the challenge scene we shot ourselves
 * [Google Grive](https://huggingface.co/spaces/xichenhku/AnyDoor/tree/main)
 * [HuggingFace](https://huggingface.co/spaces/xichenhku/AnyDoor/tree/main)
 
