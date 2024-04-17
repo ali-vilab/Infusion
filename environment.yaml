@@ -1,0 +1,23 @@
+name: infusion
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - cudatoolkit=11.6
+  - plyfile=0.8.1
+  - python=3.8.1
+  - pip=22.3.1
+  - pytorch=1.12.1
+  - torchaudio=0.12.1
+  - torchvision=0.13.1
+  - tqdm
+  - pip:
+    - gaussian_splatting/submodules/diff-gaussian-rasterization-confidence
+    - gaussian_splatting/submodules/simple-knn
+    - matplotlib==3.5.3
+    - torchmetrics==1.2.0
+    - timm==0.9.12
+    - opencv_python==4.8.1.78
+    - imageio==2.31.2
+    - open3d==0.17.0
