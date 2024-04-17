@@ -39,6 +39,7 @@
 
 ## News
 * **[2023.4.13]** 🔥 Release paper, inference code and pretrained checkpoint.
+* **[On-going]** Clean and organize the masks corresponding to the dataset used in the experiments.
 * **[On-going]** Scale-up the model, training data and release stronger models as the foundaition model for downstream tasks.
 * **[To-do]** Release training code.
 
@@ -51,13 +52,11 @@ conda activate infusion
 * 🛠️ For rendering depth, we use the *diff-gaussian-rasterization-confidence* from [FSGS](https://github.com/VITA-Group/FSGS/tree/main/submodules/diff-gaussian-rasterization-confidence), thanks to their work! :)
 ## Download Checkpoints
 Download Infusion checkpoint and put it in the 'checkpoints' folder: 
-* [HuggingFace](https://huggingface.co/spaces/xichenhku/AnyDoor/tree/main)
+* [HuggingFace](https://huggingface.co/Johanan0528/Infusion/tree/main)
 
 ## Data Preparation
 Our experiments are conducted on the datasets provided by [Mip-NeRF](https://jonbarron.info/mipnerf360/), [Instruct-NeRF2NeRF](https://drive.google.com/drive/folders/1v4MLNoSwxvSlWb26xvjxeoHpgjhi_s-s?usp=share_link), and [SPIn-NeRF](https://drive.google.com/drive/folders/1N7D4-6IutYD40v9lfXGSVbWrd47UdJEC?usp=share_link). 
-We have uploaded the masks used in the experiment and the challenge scene we shot ourselves:
-* [Google Grive](https://huggingface.co/spaces/xichenhku/AnyDoor/tree/main)
-* [HuggingFace](https://huggingface.co/spaces/xichenhku/AnyDoor/tree/main)
+We will upload the masks used in the experiments and the challenge scene we shot ourselves in a few days.
 
 Taking "Garden" in [Mip-NeRF](https://jonbarron.info/mipnerf360/) as an example, each scene folder should be organized as follows.
 ```
