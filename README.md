@@ -24,7 +24,7 @@
     <br>
     <br>
         <a href="https://arxiv.org/abs/2307.09481"><img src='https://img.shields.io/badge/arXiv-Infusion-red' alt='Paper PDF'></a>
-        <a href='https://ali-vilab.github.io/AnyDoor-Page/'><img src='https://img.shields.io/badge/Project_Page-Infusion-green' alt='Project Page'></a>
+        <a href='https://johanan528.github.io/Infusion/'><img src='https://img.shields.io/badge/Project_Page-Infusion-green' alt='Project Page'></a>
     <br>
     <b> USTC |&nbsp;HKUST |&nbsp;Ant Group |&nbsp;Alibaba Group  </b>
   </p>
