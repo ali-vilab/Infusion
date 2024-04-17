@@ -94,9 +94,9 @@ python train.py -s <path to scene folder> -m <path to output floder> -u nothing 
 # Obtain c2w matrix, intrinsic matrix, incomplete depth and rgb rendering image
 python render.py -s <path to scene folder> -m <path to output floder> -u nothing
 ```
-* 🛠️ Tip: Sometimes the rendered depth has too many empty points. Maybe you can use `--color_aug` during training, which will randomly select the background color when rendering depth, which may make the depth map more reliable.*
+* 🛠️ Tip: Sometimes the rendered depth has too many empty points. Maybe you can use `--color_aug` during training, which will randomly select the background color when rendering depth, which may make the depth map more reliable.
 
-* 🛠️ Recently, some works focused on how to segment gaussians. This is not the focus of this work, so a relatively simple method was chosen. :)*
+* 🛠️ Recently, some works focused on how to segment gaussians. This is not the focus of this work, so a relatively simple method was chosen. :)
 
 ### 🌺 Stage 2
 Inpaint gaussians using depth inpainting model.
