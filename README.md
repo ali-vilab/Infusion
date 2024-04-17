@@ -48,6 +48,7 @@ Install with `conda`:
 conda env create -f environment.yaml
 conda activate infusion
 ```
+* 🛠️ For rendering depth, we use the *diff-gaussian-rasterization-confidence* from [FSGS](https://github.com/VITA-Group/FSGS/tree/main/submodules/diff-gaussian-rasterization-confidence), thanks to their work! :)
 ## Download Checkpoints
 Download Infusion checkpoint and put it in the 'checkpoints' folder: 
 * [HuggingFace](https://huggingface.co/spaces/xichenhku/AnyDoor/tree/main)
