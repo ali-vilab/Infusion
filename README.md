@@ -156,7 +156,7 @@ python render.py -s <path to scene folder> -m <path to output floder> -u nothing
 
 * 🛠️ As explicit points, Gaussian can be directly edited and cropped in actual applications, such as [KIRI Engine](https://www.kiriengine.com/)
 ## Acknowledgements
-This project is developped on the codebase of [Marigold](https://github.com/prs-eth/marigold) and [Magicboomliu](https://github.com/Magicboomliu). We  appreciate their great works! 
+This project is developed on the codebase of [Gaussian-Splatting](https://github.com/graphdeco-inria/gaussian-splatting/tree/main), [Marigold](https://github.com/prs-eth/marigold) and [Magicboomliu](https://github.com/Magicboomliu). We  appreciate their great works! 
 
 ## Citation
 If you find this repository useful in your work, consider citing the following papers and giving a ⭐ to the public repository to allow more people to discover this repo:
