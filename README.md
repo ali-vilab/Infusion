@@ -71,7 +71,9 @@ Garden
 │   ├── DSC07957.JPG
 │   └── ... 
 │   # The part that needs to be inpainted is white
-└── sparse # Colmap 
+└── sparse # Colmap
+│   └── 0
+│       └── ...
 ```
 
 
