@@ -23,12 +23,12 @@
     <a href="https://staff.ustc.edu.cn/~forrest/"><strong>Yang Cao</strong></a>
     <br>
     <br>
-        <a href="https://arxiv.org/abs/2307.09481"><img src='https://img.shields.io/badge/arXiv-Infusion-red' alt='Paper PDF'></a>
+        <a href="http://arxiv.org/abs/2404.11613"><img src='https://img.shields.io/badge/arXiv-Infusion-red' alt='Paper PDF'></a>
         <a href='https://johanan528.github.io/Infusion/'><img src='https://img.shields.io/badge/Project_Page-Infusion-green' alt='Project Page'></a>
     <br>
     <b> USTC |&nbsp;HKUST |&nbsp;Ant Group |&nbsp;Alibaba Group  </b>
   </p>
-  
+
   <table align="center">
     <tr>
     <td>
@@ -161,4 +161,10 @@ This project is developed on the codebase of [Gaussian-Splatting](https://github
 ## Citation
 If you find this repository useful in your work, consider citing the following papers and giving a ⭐ to the public repository to allow more people to discover this repo:
 ```BibTeX
+@article{liu2024infusion,
+      title={InFusion: Inpainting 3D Gaussians via Learning Depth Completion from Diffusion Prior},
+      author={Zhiheng Liu, Hao Ouyang, Qiuyu Wang, Ka Leong Cheng, Jie Xiao, Kai Zhu, Nan Xue, Yu Liu, Yujun Shen, Yang Cao},
+      journal={arXiv preprint arXiv:2404.11613},
+      year={2024}
+    }
 ```
