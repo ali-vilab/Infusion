@@ -152,7 +152,7 @@ python train.py -s <path to scene folder> -m <path to output floder> -u DSC07956
 python render.py -s <path to scene folder> -m <path to output floder> -u nothing --iteration 150
 ```
 
-* 🛠️ The two parameters `--nb_points` and `--threshold` are used to remove floaters near the edges of inpainted gaussians. Increasing their values will remove more surrounding points. Removing floaters is **very important** for the final rendering results. Here we need to find the most suitable parameters for removing floaters for the scene. 
+* 🛠️ The two parameters `--nb_points` and `--threshold` are used to remove floaters. Increasing their values will remove more surrounding points. Removing floaters is **very important** for the final rendering results. Here we need to find the most suitable parameters for removing floaters for the scene. 
 
 * 🛠️ As explicit points, Gaussian can be directly edited and cropped in actual applications, such as [KIRI Engine](https://www.kiriengine.com/)
 ## Acknowledgements
