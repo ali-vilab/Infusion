@@ -38,7 +38,7 @@
   </table>
 
 ## News
-* **[2023.4.13]** 🔥 Release paper, inference code and pretrained checkpoint.
+* **[2024.4.18]** 🔥 Release paper, inference code and pretrained checkpoint.
 * **[On-going]** Clean and organize the masks corresponding to the dataset used in the experiments.
 * **[On-going]** Scale-up the model, training data and release stronger models as the foundaition model for downstream tasks.
 * **[To-do]** Release training code.
