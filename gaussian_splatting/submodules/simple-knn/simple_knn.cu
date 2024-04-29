@@ -129,7 +129,7 @@ __device__ __host__ float distBoxPoint(const MinMax& box, const float3& p)
 }
 
 template<int K>
-__device__ void updateKBest(const float3& ref, const float3& point, float* knn, int32_t* indices, uint32_t pointIndex)
+__device__ void updateKBest(const float3& ref, const float3& point, float* knn)
 {
 	float3 d = { point.x - ref.x, point.y - ref.y, point.z - ref.z };
 	float dist = d.x * d.x + d.y * d.y + d.z * d.z;
@@ -138,16 +138,13 @@ __device__ void updateKBest(const float3& ref, const float3& point, float* knn, 
 		if (knn[j] > dist)
 		{
 			float t = knn[j];
-			int32_t _idx = indices[j];
 			knn[j] = dist;
-			indices[j] = pointIndex;
 			dist = t;
-			pointIndex = _idx;
 		}
 	}
 }
 
-__global__ void boxMeanDist(uint32_t P, float3* points, uint32_t* indices, MinMax* boxes, float* dists, int32_t* nearestIndices)
+__global__ void boxMeanDist(uint32_t P, float3* points, uint32_t* indices, MinMax* boxes, float* dists)
 {
 	int idx = cg::this_grid().thread_rank();
 	if (idx >= P)
@@ -155,13 +152,12 @@ __global__ void boxMeanDist(uint32_t P, float3* points, uint32_t* indices, MinMa
 
 	float3 point = points[indices[idx]];
 	float best[3] = { FLT_MAX, FLT_MAX, FLT_MAX };
-	int32_t bestIndices[3] = { 0, 0, 0 };
 
 	for (int i = max(0, idx - 3); i <= min(P - 1, idx + 3); i++)
 	{
 		if (i == idx)
 			continue;
-		updateKBest<3>(point, points[indices[i]], best, bestIndices, indices[i]);
+		updateKBest<3>(point, points[indices[i]], best);
 	}
 
 	float reject = best[2];
@@ -180,16 +176,13 @@ __global__ void boxMeanDist(uint32_t P, float3* points, uint32_t* indices, MinMa
 		{
 			if (i == idx)
 				continue;
-			updateKBest<3>(point, points[indices[i]], best, bestIndices, indices[i]);
+			updateKBest<3>(point, points[indices[i]], best);
 		}
 	}
 	dists[indices[idx]] = (best[0] + best[1] + best[2]) / 3.0f;
-	nearestIndices[indices[idx] * 3 + 0] = bestIndices[0];
-    nearestIndices[indices[idx] * 3 + 1] = bestIndices[1];
-    nearestIndices[indices[idx] * 3 + 2] = bestIndices[2];
 }
 
-void SimpleKNN::knn(int P, float3* points, float* meanDists, int32_t* nearestIndices)
+void SimpleKNN::knn(int P, float3* points, float* meanDists)
 {
 	float3* result;
 	cudaMalloc(&result, sizeof(float3));
@@ -222,7 +215,7 @@ void SimpleKNN::knn(int P, float3* points, float* meanDists, int32_t* nearestInd
 	uint32_t num_boxes = (P + BOX_SIZE - 1) / BOX_SIZE;
 	thrust::device_vector<MinMax> boxes(num_boxes);
 	boxMinMax << <num_boxes, BOX_SIZE >> > (P, points, indices_sorted.data().get(), boxes.data().get());
-	boxMeanDist << <num_boxes, BOX_SIZE >> > (P, points, indices_sorted.data().get(), boxes.data().get(), meanDists, nearestIndices);
+	boxMeanDist << <num_boxes, BOX_SIZE >> > (P, points, indices_sorted.data().get(), boxes.data().get(), meanDists);
 
 	cudaFree(result);
 }

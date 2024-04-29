@@ -15,7 +15,7 @@
 class SimpleKNN
 {
 public:
-	static void knn(int P, float3* points, float* meanDists, int32_t* nearestIndices);
+	static void knn(int P, float3* points, float* meanDists);
 };
 
 #endif
