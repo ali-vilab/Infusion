@@ -38,9 +38,9 @@
   </table>
 
 ## News
-* **[2024.4.18]** 🔥 Release paper, inference code and pretrained checkpoint.
+* **[2024.4.18]** 🔥 Release paper, inference code, and pretrained checkpoint.
 * **[On-going]** Clean and organize the masks corresponding to the dataset used in the experiments.
-* **[On-going]** Scale-up the model, training data and release stronger models as the foundaition model for downstream tasks.
+* **[On-going]** Scale up the model with more training data and release stronger models as the foundation model for downstream tasks.
 * **[To-do]** Release training code.
 
 ## Installation
@@ -51,16 +51,16 @@ conda activate infusion
 ```
 * 🛠️ For rendering depth, we use the *diff-gaussian-rasterization-confidence* from [FSGS](https://github.com/VITA-Group/FSGS/tree/main/submodules/diff-gaussian-rasterization-confidence), thanks to their work! :)
 ## Download Checkpoints
-Download Infusion checkpoint and put it in the 'checkpoints' folder: 
+Download the Infusion checkpoint and put it in the 'checkpoints' folder: 
 * [HuggingFace](https://huggingface.co/Johanan0528/Infusion/tree/main)
 
 ## Data Preparation
 Our experiments are conducted on the datasets provided by [Mip-NeRF](https://jonbarron.info/mipnerf360/), [Instruct-NeRF2NeRF](https://drive.google.com/drive/folders/1v4MLNoSwxvSlWb26xvjxeoHpgjhi_s-s?usp=share_link), and [SPIn-NeRF](https://drive.google.com/drive/folders/1N7D4-6IutYD40v9lfXGSVbWrd47UdJEC?usp=share_link). 
 We will upload the masks used in the experiments and the challenge scene we shot ourselves in a few days.
 
-Taking "Garden" in [Mip-NeRF](https://jonbarron.info/mipnerf360/) as an example, each scene folder should be organized as follows.
+Taking "garden" in [Mip-NeRF](https://jonbarron.info/mipnerf360/) as an example, each scene folder should be organized as follows.
 ```
-Garden
+garden
 ├── images # RGB data
 │   ├── DSC07956.JPG
 │   ├── DSC07957.JPG
@@ -76,7 +76,7 @@ Garden
 ```
 
 
-* 🛠️ You can prepare your own data according to such a structure. In addition, accurate mask is very important. Here we recommend two image segmentation tools: [Segment and Track Anything](https://github.com/z-x-yang/Segment-and-Track-Anything) and [Grounded SAM](https://github.com/IDEA-Research/Grounded-Segment-Anything).
+* 🛠️ You can prepare your own data according to such a structure. In addition, accurate masks are very important. Here, we recommend two image segmentation tools: [Segment and Track Anything](https://github.com/z-x-yang/Segment-and-Track-Anything) and [Grounded SAM](https://github.com/IDEA-Research/Grounded-Segment-Anything).
 
 * 🛠️ To obtain camera parameters and initial point cloud, please refer to 'convert.py' in [Gaussian-Splatting](https://github.com/graphdeco-inria/gaussian-splatting/tree/main) :)
 ## Instructions
@@ -85,25 +85,25 @@ The entire pipeline is divided into three stages:
 * Inpaint Gaussians via Diffusion Prior.
 * Combine Inpainted Gaussians and Incomplete Gaussians.
 ### 🌺 Stage 1
-Use pre-annotated masks to train incomplete gaussians.
+Use pre-annotated masks to train incomplete Gaussians.
 ```bash
 cd gaussian_splatting
-# Train incomplete gaussians
-python train.py -s <path to scene folder> -m <path to output floder> -u nothing --mask_training
+# Train incomplete Gaussians
+python train.py -s <path to scene folder> -m <path to output folder> -u nothing --mask_training
 #--color_aug
 
-# Obtain c2w matrix, intrinsic matrix, incomplete depth and rgb rendering image
-python render.py -s <path to scene folder> -m <path to output floder> -u nothing
+# Obtain c2w matrix, intrinsic matrix, incomplete depth, and rgb rendering image
+python render.py -s <path to scene folder> -m <path to output folder> -u nothing
 ```
-* 🛠️ Tip: Sometimes the rendered depth has too many empty points. Maybe you can use `--color_aug` during training, which will randomly select the background color when rendering depth, which may make the depth map more reliable.
+* 🛠️ Tip: Sometimes, the rendered depth has too many empty points. Maybe you can use `--color_aug` during training, which will randomly select the background color when rendering depth, which may make the depth map more reliable.
 
-* 🛠️ Recently, some works focused on how to segment gaussians. This is not the focus of this work, so a relatively simple method was chosen. :)
+* 🛠️ Recently, some works focused on how to segment Gaussians. This is not the focus of this work, so a relatively simple method was chosen. :)
 
 ### 🌺 Stage 2
-Inpaint gaussians using depth inpainting model.
-* 📢 You need to select a **single image** and in *'path to output floder/train/ours_30000/renders'* and mark the area that needs to be inpainted and save it as **'mask.png'**. (*It doesn’t have to be precise but it needs to cover all the missing parts.*)
+Inpaint Gaussians using depth inpainting model.
+* 📢 You need to select a **single image** and in *'path to output folder/train/ours_30000/renders'* and mark the area that needs to be inpainted and save it as **'mask.png'**. (*It doesn’t have to be precise but it needs to cover all the missing parts.*)
 
-* 📢 Next, you need to inpaint a single image. Here are some great tools to inpaint single image: [Stable diffusion XL Inpainting](https://huggingface.co/spaces/diffusers/stable-diffusion-xl-inpainting) and [Photoroom](https://app.photoroom.com/create). Here is an example:
+* 📢 Next, you need to inpaint a single image. Here are some great tools to inpaint a single image: [Stable Diffusion XL Inpainting](https://huggingface.co/spaces/diffusers/stable-diffusion-xl-inpainting) and [Photoroom](https://app.photoroom.com/create). Here is an example:
   <table align="center">
     <tr>
     <td>
@@ -117,11 +117,11 @@ Inpaint gaussians using depth inpainting model.
 cd depth_inpainting/run
 input_rgb_path=<path to inpainted single image>
 input_mask_path=<path to 'mask.png'>
-input_depth_path=<path to output floder/train/ours_30000/depth_dis/DSC07956.npy>
-c2w=<path to output floder/train/ours_30000/c2w/DSC07956.npy>
-intri=<path to output floder/train/ours_30000/intri/DSC07956.npy>
+input_depth_path=<path to output folder/train/ours_30000/depth_dis/DSC07956.npy>
+c2w=<path to output folder/train/ours_30000/c2w/DSC07956.npy>
+intri=<path to output folder/train/ours_30000/intri/DSC07956.npy>
 model_path=</path to depth_inpainting model checkpoint>  # absolute path
-output_dir=<path to output floder>
+output_dir=<path to output folder>
 
 
 CUDA_VISIBLE_DEVICES=0 python run_inference_inpainting.py \
@@ -136,27 +136,27 @@ CUDA_VISIBLE_DEVICES=0 python run_inference_inpainting.py \
             --use_mask\
             --blend  # Whether to use 'Blended Diffusion (https://arxiv.org/abs/2111.14818)' during inference. 
 ```
-* 🛠️ Tip:If you feel that the depth map obtained by one inference is not satisfactory, you can use the newly obtained `output_dir/<inpainted_image_name>_depth_dis.npy` as the new `$input_depth_path` and loop two or three times to get better results.
+* 🛠️ Tip: If you feel that the depth map obtained by one inference is not satisfactory, you can use the newly obtained `output_dir/<inpainted_image_name>_depth_dis.npy` as the new `$input_depth_path` and loop two or three times to get better results.
 ### 🌺 Stage 3
-Combine inpainted gaussians and incomplete gaussians and quickly fine-tune on inpainted single image.
+Combine inpainted Gaussians and incomplete Gaussians and quickly fine-tune on inpainted single image.
 ```bash
 # Assume that the selected single image is named "DSC07956.JPG".
-origin_ply="path to output floder/point_cloud/iteration_30000/point_cloud.ply"
-supp_ply="path to output floder/DSC07956_mask.ply"
-save_ply="path to output floder/point_cloud/iteration_30001/point_cloud.ply"
-# Combine inpainted gaussians and incomplete gaussians.
+origin_ply="path to output folder/point_cloud/iteration_30000/point_cloud.ply"
+supp_ply="path to output folder/DSC07956_mask.ply"
+save_ply="path to output folder/point_cloud/iteration_30001/point_cloud.ply"
+# Combine inpainted Gaussians and incomplete Gaussians.
 python compose.py --original_ply $origin_ply  --supp_ply $supp_ply --save_ply $save_ply --nb_points 100 --threshold 1.0
-# Fine-tune on inpainted single image for 150 iterations.
-python train.py -s <path to scene folder> -m <path to output floder> -u DSC07956.JPG -n <path to inpainted single image> --load_iteration 30001 --iteration 150
+# Fine-tune on an inpainted single image for 150 iterations.
+python train.py -s <path to scene folder> -m <path to output folder> -u DSC07956.JPG -n <path to inpainted single image> --load_iteration 30001 --iteration 150
 # Render
-python render.py -s <path to scene folder> -m <path to output floder> -u nothing --iteration 150
+python render.py -s <path to scene folder> -m <path to output folder> -u nothing --iteration 150
 ```
 
-* 🛠️ The two parameters `--nb_points` and `--threshold` are used to remove floaters. Increasing their values will remove more surrounding points. Removing floaters is **very important** for the final rendering results. Here we need to find the most suitable parameters for removing floaters for the scene. 
+* 🛠️ The two parameters `--nb_points` and `--threshold` are used to remove floaters. Increasing their values will remove more surrounding points. Removing floaters is **very important** for the final rendering results. Here, we need to find the most suitable parameters for removing floaters from the scene. 
 
 * 🛠️ As explicit points, Gaussian can be directly edited and cropped in actual applications, such as [KIRI Engine](https://www.kiriengine.com/)
 ## Acknowledgements
-This project is developed on the codebase of [Gaussian-Splatting](https://github.com/graphdeco-inria/gaussian-splatting/tree/main), [Marigold](https://github.com/prs-eth/marigold) and [Magicboomliu](https://github.com/Magicboomliu). We  appreciate their great works! 
+This project is developed on the codebase of [Gaussian-Splatting](https://github.com/graphdeco-inria/gaussian-splatting/tree/main), [Marigold](https://github.com/prs-eth/marigold) and [Magicboomliu](https://github.com/Magicboomliu). We appreciate their great works! 
 
 ## Citation
 If you find this repository useful in your work, consider citing the following papers and giving a ⭐ to the public repository to allow more people to discover this repo:
