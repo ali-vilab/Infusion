@@ -162,9 +162,10 @@ This project is developed on the codebase of [Gaussian-Splatting](https://github
 If you find this repository useful in your work, consider citing the following papers and giving a ⭐ to the public repository to allow more people to discover this repo:
 ```BibTeX
 @article{liu2024infusion,
-      title={InFusion: Inpainting 3D Gaussians via Learning Depth Completion from Diffusion Prior},
-      author={Zhiheng Liu, Hao Ouyang, Qiuyu Wang, Ka Leong Cheng, Jie Xiao, Kai Zhu, Nan Xue, Yu Liu, Yujun Shen, Yang Cao},
-      journal={arXiv preprint arXiv:2404.11613},
-      year={2024}
-    }
+  title={InFusion: Inpainting 3D Gaussians via Learning Depth Completion from Diffusion Prior},
+  author={Liu, Zhiheng and Ouyang, Hao and Wang, Qiuyu and Cheng, Ka Leong and Xiao, Jie and Zhu, Kai and Xue, Nan and Liu, Yu and Shen, Yujun and Cao, Yang},
+  journal={arXiv preprint arXiv:2404.11613},
+  year={2024}
+}
+
 ```
