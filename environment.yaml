@@ -1,4 +1,4 @@
-name: infusion
+name: InFusion
 channels:
   - pytorch
   - conda-forge
